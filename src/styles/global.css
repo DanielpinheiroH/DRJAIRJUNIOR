@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Manrope';
+  src: url('../assets/fonts/manrope-latin.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('../assets/fonts/plus-jakarta-sans-latin.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 500 800;
+  font-display: swap;
+}
+
 :root {
   --background: #050505;
   --surface: #0d0d0d;
@@ -11,7 +27,7 @@
   --accent: #c6a15b;
   --accent-light: #d8ba7a;
   --border: rgba(255, 255, 255, 0.1);
-  --serif: 'Playfair Display', Georgia, serif;
+  --serif: 'Plus Jakarta Sans', 'Manrope', Arial, sans-serif;
   --sans: 'Manrope', Arial, sans-serif;
   --container: 1240px;
   color-scheme: dark;

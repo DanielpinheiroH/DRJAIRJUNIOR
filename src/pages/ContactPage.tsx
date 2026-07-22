@@ -3,7 +3,7 @@ import { Camera, Clock, Mail, MapPin, Phone } from 'lucide-react';
 import { Breadcrumb } from '../components/common/Breadcrumb';
 import { WhatsAppButton } from '../components/common/WhatsAppButton';
 import { SEO } from '../components/seo/SEO';
-import { clinicConfig, hasContact, locationLabel } from '../config/clinic';
+import { clinicConfig, hasContact, locationSuffix } from '../config/clinic';
 import { treatments } from '../data/treatments';
 import { trackEvent } from '../services/analytics';
 import { whatsappUrl } from '../utils/contact';
@@ -26,7 +26,7 @@ export default function ContactPage() {
   };
   return (
     <>
-      <SEO title={`Contato | Dentista em ${locationLabel}`} description="Entre em contato para conversar sobre avaliação odontológica, tratamentos e planejamento individualizado." canonical="/contato" breadcrumbs={breadcrumbs} />
+      <SEO title={`Contato${locationSuffix} | Dr. Jair Júnior`} description="Entre em contato para conversar sobre avaliação odontológica, tratamentos e planejamento individualizado." canonical="/contato" breadcrumbs={breadcrumbs} />
       <section className="internal-hero"><div className="container"><Breadcrumb items={breadcrumbs} /><span className="eyebrow">Contato</span><h1>Vamos conversar<br /><em>sobre o seu cuidado?</em></h1><p>Envie seus dados para preparar uma mensagem de WhatsApp. O formulário não armazena informações.</p></div></section>
       <section className="section contact-section"><div className="container contact-grid">
         <div className="contact-info"><span className="eyebrow">Canais de atendimento</span><h2>Escolha como prefere entrar em contato</h2><p>Dados não preenchidos ficam ocultos até a confirmação oficial.</p>

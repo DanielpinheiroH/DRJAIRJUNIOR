@@ -13,10 +13,10 @@ export const clinicConfig: ClinicConfig = {
   neighborhood: '',
   address: '',
   phone: '',
-  whatsapp: '',
+  whatsapp: '+55 61 8576-5828',
   email: '',
   instagram: '',
-  website: '',
+  website: 'https://drjairjunior.vercel.app',
   latitude: '',
   longitude: '',
   openingHours: '',
@@ -25,7 +25,8 @@ export const clinicConfig: ClinicConfig = {
 };
 
 export const displayName = clinicConfig.dentistName || 'Atendimento odontológico';
-export const locationLabel = clinicConfig.city || 'sua cidade';
-export const siteUrl = clinicConfig.website || 'https://example.com';
+export const siteUrl = clinicConfig.website || 'https://drjairjunior.vercel.app';
+
+export const locationSuffix = clinicConfig.city ? ` em ${clinicConfig.city}` : '';
 
 export const hasContact = Boolean(clinicConfig.whatsapp || clinicConfig.phone);

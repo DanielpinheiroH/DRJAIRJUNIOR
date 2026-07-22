@@ -1,7 +1,7 @@
-import { ArrowRight, HeartHandshake, ScanLine, ShieldCheck, Sparkles, Stethoscope } from 'lucide-react';
+import { ArrowRight, HeartHandshake, ScanLine, ShieldCheck, Sparkles, Stethoscope, UserRoundCheck, Waypoints } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { officialAssets } from '../config/assets';
-import { clinicConfig, locationLabel } from '../config/clinic';
+import { clinicConfig, locationSuffix } from '../config/clinic';
 import { featuredTreatments } from '../data/treatments';
 import { authorizedResults } from '../data/results';
 import { FAQAccordion } from '../components/common/FAQAccordion';
@@ -14,13 +14,21 @@ import { SEO } from '../components/seo/SEO';
 import { TreatmentCard } from '../components/treatments/TreatmentCard';
 
 const differentials = [
-  [ScanLine, 'Planejamento personalizado', 'Decisões organizadas a partir da avaliação e das necessidades de cada paciente.'],
-  [Stethoscope, 'Tecnologia aplicada', 'Recursos podem apoiar diagnóstico, comunicação e execução quando clinicamente indicados.'],
-  [HeartHandshake, 'Atendimento humanizado', 'Escuta, clareza e respeito em todas as conversas sobre o tratamento.'],
-  [ShieldCheck, 'Estética e função', 'Planejamento que considera saúde, função e harmonia de maneira integrada.'],
+  [HeartHandshake, 'Atendimento humanizado', 'Escuta genuína, clareza e respeito em todas as conversas sobre o tratamento.'],
+  [ScanLine, 'Planejamento preciso', 'Decisões organizadas a partir da avaliação e das necessidades de cada paciente.'],
+  [Stethoscope, 'Tecnologia aplicada', 'Recursos podem apoiar diagnóstico e execução quando clinicamente indicados.'],
+  [UserRoundCheck, 'Cuidado individual', 'Condutas definidas para o contexto clínico, as prioridades e o ritmo de cada pessoa.'],
+  [ShieldCheck, 'Ética profissional', 'Indicações responsáveis, sem promessas de resultado e com respeito aos limites de cada caso.'],
+  [Waypoints, 'Comunicação transparente', 'Possibilidades, etapas e cuidados apresentados para uma decisão consciente.'],
 ];
 
-const steps = ['Primeiro contato', 'Avaliação odontológica', 'Planejamento individual', 'Início do tratamento', 'Acompanhamento'];
+const steps = [
+  ['Agende', 'Escolha o canal mais conveniente para solicitar seu atendimento.'],
+  ['Consulta', 'Converse sobre necessidades, expectativas e histórico de saúde.'],
+  ['Diagnóstico', 'Realize a avaliação e, quando necessário, exames complementares.'],
+  ['Tratamento', 'Siga um planejamento individual, explicado antes de cada etapa.'],
+  ['Acompanhamento', 'Receba orientações de cuidado e revisões conforme a indicação.'],
+];
 
 const faq = [
   { question: 'Como funciona a primeira avaliação?', answer: 'É um momento para conversar sobre necessidades e expectativas, realizar o exame clínico e definir se exames complementares são necessários.' },
@@ -33,23 +41,24 @@ const faq = [
 ];
 
 export default function HomePage() {
-  const title = `Dentista em ${locationLabel} | Implantes, Lentes e Reabilitação Oral`;
+  const title = `Dr. Jair Júnior${locationSuffix} | Implantes e Reabilitação Oral`;
+  const description = `Atendimento odontológico particular${locationSuffix}, com planejamento personalizado em implantes, protocolo, próteses, lentes e estética do sorriso.`;
   return (
     <>
-      <SEO title={title} description={`Atendimento odontológico particular em ${locationLabel}, com planejamento personalizado em implantes, protocolo, próteses, lentes e estética do sorriso.`} canonical="/" faq={faq} />
+      <SEO title={title} description={description} canonical="/" faq={faq} image={officialAssets.dentistaHero ?? undefined} />
       <section className="hero-home">
         <div className="hero-noise" />
         <div className="container hero-grid">
           <div className="hero-copy">
             <span className="eyebrow"><Sparkles size={14} /> Odontologia estética e reabilitação oral</span>
-            <h1>Planejamento preciso.<br /><em>Cuidado individual.</em></h1>
-            <p>Cada sorriso possui necessidades únicas. Os tratamentos são planejados considerando saúde, função, estética e as expectativas de cada paciente.</p>
-            <div className="hero-actions"><WhatsAppButton origin="hero" /><Link to="/tratamentos" className="text-link">Conhecer tratamentos <ArrowRight size={17} /></Link></div>
-            <div className="hero-meta"><span>01</span><p>Avaliação profissional</p><span>02</span><p>Planejamento individualizado</p></div>
+            <h1>Excelência começa<br />com um cuidado <em>individual.</em></h1>
+            <p>Uma odontologia que combina escuta, planejamento e precisão para cuidar da saúde, função e estética do seu sorriso.</p>
+            <div className="hero-actions"><WhatsAppButton origin="hero" /><Link to="/tratamentos" className="button button--outline">Conhecer tratamentos <ArrowRight size={17} /></Link></div>
+            <div className="hero-trust" aria-label="Princípios do atendimento"><span><ShieldCheck /> Avaliação responsável</span><span><ScanLine /> Planejamento individual</span><span><HeartHandshake /> Cuidado humanizado</span></div>
           </div>
           <div className="hero-visual">
             <div className="hero-frame"><MediaPlaceholder src={officialAssets.dentistaHero} alt={`Retrato profissional de ${clinicConfig.dentistName}`} expectedFile="dentista-hero.webp" priority /></div>
-            <div className="hero-signature"><span>Dr.</span><strong>Jair Júnior</strong><small>Odontologia estética · Reabilitação oral</small></div>
+            <div className="hero-signature"><span>Cuidado em cada detalhe</span><strong>Dr. Jair Júnior</strong><small>Odontologia estética · Reabilitação oral</small></div>
           </div>
         </div>
       </section>
@@ -63,7 +72,7 @@ export default function HomePage() {
       </div></section>
 
       <section className="section about-preview"><div className="container split-grid">
-        <Reveal><div className="about-media"><MediaPlaceholder src={officialAssets.dentistaConsultorio} alt={`Foto profissional de ${clinicConfig.dentistName}`} expectedFile="dentista-consultorio.webp" /><div className="media-label">Material oficial</div></div></Reveal>
+        <Reveal><div className="about-media"><MediaPlaceholder src={officialAssets.dentistaConsultorio} alt={`Foto profissional de ${clinicConfig.dentistName}`} expectedFile="dentista-consultorio.webp" /></div></Reveal>
         <Reveal><div className="about-copy"><span className="eyebrow">Sobre o profissional</span><h2>Escuta, planejamento e transparência</h2><p>O atendimento é conduzido de forma individualizada, respeitando as necessidades clínicas, funcionais e estéticas de cada paciente.</p><p>Antes de qualquer decisão, possibilidades, limitações e cuidados devem ser discutidos com clareza.</p><Link className="text-link" to="/sobre">Conheça o Dr. Jair Júnior <ArrowRight size={17} /></Link><WhatsAppButton origin="about_preview" variant="outline" /></div></Reveal>
       </div></section>
 
@@ -74,7 +83,7 @@ export default function HomePage() {
 
       <section className="section process-section"><div className="container">
         <SectionHeading eyebrow="Jornada de cuidado" title="Da primeira conversa ao acompanhamento" description="Uma sequência clara, adaptada às necessidades e ao ritmo de cada tratamento." />
-        <ol className="process-list">{steps.map((step, index) => <li key={step}><span>{String(index + 1).padStart(2, '0')}</span><h3>{step}</h3></li>)}</ol>
+        <ol className="process-list">{steps.map(([step, detail], index) => <li key={step}><span>{String(index + 1).padStart(2, '0')}</span><h3>{step}</h3><p>{detail}</p></li>)}</ol>
       </div></section>
 
       <section className="section results-preview"><div className="container">

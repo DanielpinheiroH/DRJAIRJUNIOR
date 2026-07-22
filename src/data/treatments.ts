@@ -1,5 +1,5 @@
 import type { Treatment } from '../types';
-import { locationLabel } from '../config/clinic';
+import { locationSuffix } from '../config/clinic';
 
 type TreatmentSeed = Pick<
   Treatment,
@@ -8,8 +8,8 @@ type TreatmentSeed = Pick<
 
 const makeTreatment = (seed: TreatmentSeed): Treatment => ({
   ...seed,
-  seoTitle: `${seed.title} em ${locationLabel} | Avaliação personalizada`,
-  seoDescription: `Conheça as possibilidades de ${seed.title.toLowerCase()} em ${locationLabel}. A indicação depende de avaliação profissional e o planejamento é individualizado.`,
+  seoTitle: `${seed.title}${locationSuffix} | Avaliação personalizada`,
+  seoDescription: `Conheça as possibilidades de ${seed.title.toLowerCase()}${locationSuffix}. A indicação depende de avaliação profissional e o planejamento é individualizado.`,
   indications: [
     `Pessoas que desejam entender se ${seed.title.toLowerCase()} pode ser indicado para sua necessidade`,
     'Pacientes que buscam recuperar ou preservar saúde, função e estética bucal',
