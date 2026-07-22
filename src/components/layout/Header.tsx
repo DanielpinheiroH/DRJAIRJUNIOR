@@ -40,7 +40,7 @@ export function Header() {
 
   return (
     <header
-      className={`site-header ${scrolled ? 'is-scrolled' : ''}`}
+      className={`site-header ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-menu-open' : ''}`}
     >
       <div className="container header-inner">
         <Link to="/" className="brand" aria-label={`${displayName} — início`}>
