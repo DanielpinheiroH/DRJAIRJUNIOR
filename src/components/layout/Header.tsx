@@ -18,6 +18,20 @@ export function Header() {
     return () => { document.body.style.overflow = ''; };
   }, [open]);
   useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+    const handleResize = () => {
+      if (window.innerWidth > 1050) setOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24);
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -40,7 +54,7 @@ export function Header() {
           {nav.map(([label, to]) => <NavLink key={to} to={to}>{label}</NavLink>)}
         </nav>
         <WhatsAppButton origin="header" label="Agendar avaliação" className="header-cta" />
-        <button className="menu-toggle" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? 'Fechar menu' : 'Abrir menu'}>
+        <button className="menu-toggle" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="mobile-menu" aria-haspopup="true" aria-label={open ? 'Fechar menu' : 'Abrir menu'}>
           {open ? <X /> : <Menu />}
         </button>
       </div>

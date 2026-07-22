@@ -51,7 +51,7 @@ export default function HomePage() {
         <div className="container hero-grid">
           <div className="hero-copy">
             <span className="eyebrow"><Sparkles size={14} /> Odontologia estética e reabilitação oral</span>
-            <h1>Excelência começa<br />com um cuidado <em>individual.</em></h1>
+            <h1><span>Excelência começa</span><span>com um cuidado <em>individual.</em></span></h1>
             <p>Uma odontologia que combina escuta, planejamento e precisão para cuidar da saúde, função e estética do seu sorriso.</p>
             <div className="hero-actions"><WhatsAppButton origin="hero" /><Link to="/tratamentos" className="button button--outline">Conhecer tratamentos <ArrowRight size={17} /></Link></div>
             <div className="hero-trust" aria-label="Princípios do atendimento"><span><ShieldCheck /> Avaliação responsável</span><span><ScanLine /> Planejamento individual</span><span><HeartHandshake /> Cuidado humanizado</span></div>
