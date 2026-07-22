@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
 import './styles/global.css';
+import './styles/theme-light.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

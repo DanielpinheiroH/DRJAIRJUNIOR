@@ -1,4 +1,5 @@
 import { Menu, X } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { displayName } from '../../config/clinic';
@@ -12,13 +13,25 @@ const nav = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [open]);
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="site-header">
+    <motion.header
+      className={`site-header ${scrolled ? 'is-scrolled' : ''}`}
+      initial={{ opacity: 0, y: -14 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+    >
       <div className="container header-inner">
         <Link to="/" className="brand" aria-label={`${displayName} — início`}>
           {officialAssets.logoPrincipal ? (
@@ -41,6 +54,6 @@ export function Header() {
           <WhatsAppButton origin="menu_mobile" />
         </nav>
       </div>
-    </header>
+    </motion.header>
   );
 }
